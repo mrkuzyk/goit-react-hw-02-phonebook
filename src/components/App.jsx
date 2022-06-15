@@ -16,6 +16,11 @@ export class App extends Component {
   }
 
   addContact = ({ name, number }) => {
+
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      return alert(`${name} is already in contacts`);
+    };
+
     const contact = {
       id: nanoid(5),
       name,
@@ -27,6 +32,12 @@ export class App extends Component {
     }))
   };
 
+  deleteContact = (id) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id)
+    }))
+  }
+
   searchFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
@@ -35,7 +46,6 @@ export class App extends Component {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
-
   }
 
   render() {
@@ -50,6 +60,7 @@ export class App extends Component {
         />
         <ContactList
           contacts={this.getVisibleContact()}
+          onDeleteContact={this.deleteContact}
         />
       </div>
     )

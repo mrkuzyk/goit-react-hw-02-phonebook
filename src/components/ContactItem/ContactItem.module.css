@@ -1,0 +1,8 @@
+.items{
+    display: flex;
+    align-items: center;
+
+}
+.btn{
+    margin-left: 15px;
+}
