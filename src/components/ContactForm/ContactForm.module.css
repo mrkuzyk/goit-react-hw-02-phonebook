@@ -17,6 +17,12 @@
 }
 
 .btn{
-    width: 150px;
     padding: 10px;
+    background-color: rgb(175, 191, 202);
+    border: 1px solid transparent;
+}
+
+.btn:hover,
+.btn:focus{
+    background-color: rgb(236, 208, 190);
 }
